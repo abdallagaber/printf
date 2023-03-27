@@ -25,10 +25,8 @@ while(format[i])
 		}
 		else if (format[i] == 's')
 		{
-			char *s = va_arg(arg, char*);
-			printf("%s",s);
+			count += printf("%s",va_arg(arg,char*));
 			i++;
-			count += strlen(s);
 		}
 		else if (format[i] == '%')
 		{

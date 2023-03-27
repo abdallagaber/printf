@@ -34,6 +34,18 @@ while (format[i])
 			count++;
 			i++;
 		}
+		else if (format[i] == "d")
+		{
+			_printf("%d",va_arg(arg, int));
+			count++;
+			i++;
+		}
+		else if (format [i] == "i")
+		{
+			_printf("%i",va_arg(arg, float);
+			count++;
+			i++;
+		}
 		else
 		{
 			return (-1);

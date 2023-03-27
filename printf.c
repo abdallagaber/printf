@@ -36,8 +36,7 @@ while (format[i])
 		}
 		else if (format[i] == 'd' || format[i] == 'i')
 		{
-			_printf("%d",va_arg(arg, int));
-			count++;
+			count += printf("%d",va_arg(arg, int));
 			i++;
 		}
 		else

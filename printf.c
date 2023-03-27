@@ -34,15 +34,9 @@ while (format[i])
 			count++;
 			i++;
 		}
-		else if (format[i] == "d")
+		else if (format[i] == 'd' || format[i] == 'i')
 		{
 			_printf("%d",va_arg(arg, int));
-			count++;
-			i++;
-		}
-		else if (format [i] == "i")
-		{
-			_printf("%i",va_arg(arg, float);
 			count++;
 			i++;
 		}

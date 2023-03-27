@@ -21,45 +21,33 @@ while (format[i])
 		{
 			_putchar(va_arg(arg, int));
 			count++;
-			i++;
 		}
 		else if (format[i] == 's')
 		{
 			char *s = va_arg(arg, char*);
+
 			if (s == NULL)
-			{
-				count +=printf("(null)");
-				i++;
-			}
+				count += printf("(null)");
 			else
-			{
 			count += printf("%s", s);
-			i++;
-			}
 		}
 		else if (format[i] == '%')
 		{
 			_putchar('%');
 			count++;
-			i++;
 		}
 		else if (format[i] == 'd' || format[i] == 'i')
-		{
-			count += printf("%d",va_arg(arg, int));
-			i++;
-		}
+			count += printf("%d", va_arg(arg, int));
 		else
-		{
 			return (-1);
-		}
+		i++;
 	}
 	else
 	{
 		_putchar(format[i]);
 		count++;
 		i++;
-	}
-}
+	}}
 va_end(arg);
 return (count);
 }

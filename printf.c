@@ -25,13 +25,19 @@ while(format[i])
 		}
 		else if (format[i] == 's')
 		{
-			count += printf("%s",va_arg(arg, char*));
+			char *s = va_arg(arg, char*);
+			printf("%s",s);
 			i++;
+			count += strlen(s);
 		}
 		else if (format[i] == '%')
 		{
 			_putchar('%');
 			count++;
+			i++;
+		}
+		else 
+		{
 			i++;
 		}
 	}
@@ -42,5 +48,6 @@ while(format[i])
 		i++;
 	}
 }
+va_end(arg);
 return (count);
 }

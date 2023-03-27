@@ -19,17 +19,20 @@ while(format[i])
 		i++;
 		if (format[i] == 'c')
 		{
-			_putchar(va_arg(arg, int) + '0');
+			_putchar(va_arg(arg, int));
 			count++;
+			i++;
 		}
 		else if (format[i] == 's')
 		{
 			count += printf("%s",va_arg(arg, char*));
+			i++;
 		}
 		else if (format[i] == '%')
 		{
 			_putchar('%');
 			count++;
+			i++;
 		}
 	}
 	else 

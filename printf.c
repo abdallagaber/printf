@@ -25,8 +25,17 @@ while (format[i])
 		}
 		else if (format[i] == 's')
 		{
-			count += printf("%s", va_arg(arg, char*));
+			char *s = va_arg(arg, char*);
+			if (s == NULL)
+			{
+				count +=printf("(null)");
+				i++;
+			}
+			else
+			{
+			count += printf("%s", s);
 			i++;
+			}
 		}
 		else if (format[i] == '%')
 		{

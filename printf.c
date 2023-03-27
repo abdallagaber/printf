@@ -42,11 +42,11 @@ while (format[i])
 			return (-1);
 		i++;
 	}
-	else if (format[i] == '47')
+	else if (format[i] == 92)
 	{
 		i++;
-		if (format[i] == '47')
-			count += _putchar('47');
+		if (format[i] == 'n')
+			count += _putchar('\n');
 	}
 	else
 	{

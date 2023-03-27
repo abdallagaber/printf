@@ -36,7 +36,7 @@ while (format[i])
 		}
 		else
 		{
-			i++;
+			return (-1);
 		}
 	}
 	else

@@ -1,59 +1,85 @@
 #include"main.h"
 #include<stdarg.h>
+
 /**
- * _printf - printf function
- * @format: ds sd s sd
- * ...: sd ss sds
- * Return: sd ss s
+ * _printf - Prints a formatted string to the standard output.
+ * @format: A pointer to a character string.
+ *
+ * Return: The number of characters printed (excluding the null byte used to
+ * end output to strings).
  */
 int _printf(const char *format, ...)
 {
-va_list arg;
-int count = 0, i = 0;
+	va_list args;
+	int count = 0, digit, sign, len, num, i;
+	char buffer[20];
+	char c;
+	char *s;
 
-va_start(arg, format);
-while (format[i])
-{
-	if (format[i] == '%')
+	va_start(args, format);
+	while (*format != '\0')
 	{
-		i++;
-		if (format[i] == 'c')
+		if (*format == '%')
 		{
-			_putchar(va_arg(arg, int));
-			count++;
+			format++;
+			if (*format == '%')
+			{
+				putchar('%');
+				count++;
+			}
+			else if (*format == 'c')
+			{
+				c = (char) va_arg(args, int);
+				putchar(c);
+				count++;
+			}
+			else if (*format == 's')
+			{
+				s = va_arg(args, char *);
+				while (*s != '\0')
+				{
+					putchar(*s);
+					count++;
+					s++;
+				}
+			}
+			else if (*format == 'd' || *format == 'i')
+			{
+				num = va_arg(args, int);
+				sign = 1;
+				if (num < 0)
+				{
+					sign = -1;
+					num = -num;
+				}
+				len = 0;
+				do {
+					digit = num % 10;
+					buffer[len] = digit + '0';
+					len++;
+					num /= 10;
+				} while (num > 0);
+				if (sign == -1)
+				{
+					putchar('-');
+					count++;
+				}
+				for (i = len - 1; i >= 0; i--)
+				{
+					putchar(buffer[i]);
+					count++;
+				}
+			}
+			format++;
 		}
-		else if (format[i] == 's')
-		{
-			char *s = va_arg(arg, char*);
-
-			if (s == NULL)
-				count += printf("(null)");
-			else
-			count += printf("%s", s);
-		}
-		else if (format[i] == '%')
-		{
-			_putchar('%');
-			count++;
-		}
-		else if (format[i] == 'd' || format[i] == 'i')
-			count += printf("%d", va_arg(arg, int));
 		else
-			return (-1);
-		i++;
+		{
+			putchar(*format);
+			count++;
+			format++;
+		}
 	}
-	else if (format[i] == 92)
-	{
-		i++;
-		if (format[i] == 'n')
-			count += _putchar('\n');
-	}
-	else
-	{
-		_putchar(format[i]);
-		count++;
-		i++;
-	}}
-va_end(arg);
-return (count);
+	va_end(args);
+	return (count);
 }
+
